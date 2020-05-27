@@ -34,9 +34,17 @@ INNER JOIN `stanze`
 ON `prenotazioni`.`stanza_id` = `stanze`.`id`
 WHERE `stanze`.`floor` = '1';
 
-Le stanze sono state tutte prenotate almeno una volta? (Visualizzare le stanze non ancora prenotate)
+5 Le stanze sono state tutte prenotate almeno una volta? (Visualizzare le stanze non ancora prenotate)
+
 SELECT `stanze`.`room_number` AS `vacancy`
 FROM `stanze`
 LEFT JOIN `prenotazioni`
 ON `stanze`.`id` = `prenotazioni`.`stanza_id`
 WHERE `prenotazioni`.`stanza_id` IS NULL;
+
+Extra Conta gli ospiti raggruppandoli per anno di nascita
+
+SELECT COUNT(`ospiti`.`id`) AS `number of guests`
+FROM `ospiti`
+ORDER BY(`ospiti`.`date_of_birth`);
+
